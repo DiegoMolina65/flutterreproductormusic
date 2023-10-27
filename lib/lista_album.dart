@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
-import 'package:reproductor/widgets/album_card.dart';
+import 'package:reproductor/album_card.dart';
 
-class AlbumList extends StatefulWidget {
-  const AlbumList({super.key});
+class ListaAlbum extends StatefulWidget {
+  const ListaAlbum({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -13,7 +13,7 @@ class AlbumList extends StatefulWidget {
   }
 }
 
-class _AlbumListState extends State<AlbumList> {
+class _AlbumListState extends State<ListaAlbum> {
   var albumsResponse = [];
 
   Future<void> fetchAlbumList() async {
@@ -41,31 +41,36 @@ class _AlbumListState extends State<AlbumList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1DB954),
       appBar: AppBar(
-        title: const Row(
-          children: [
-            SizedBox(width: 55,),
-            Icon(Icons.music_note),
-            Text(
-              'Swift Music',
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
+        title: const Text(
+          'SpotifyDieguin',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        centerTitle: true,
-        backgroundColor: Colors.indigo,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFFA8FF78),
+                Color(0xFF1DB954),
+              ],
+            ),
+          ),
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.arrow_forward_ios),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Center(
         child: albumsResponse.isEmpty
@@ -73,7 +78,7 @@ class _AlbumListState extends State<AlbumList> {
             : ListView.builder(
                 itemCount: albumsResponse.length,
                 itemBuilder: (context, index) {
-                  return AlbumCard(
+                  return CardAlbum(
                     albumData: albumsResponse[index],
                   );
                 },

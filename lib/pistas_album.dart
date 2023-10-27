@@ -1,10 +1,11 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-import 'package:reproductor/widgets/song_card.dart';
+import 'package:reproductor/cancion_card.dart';
 
 class AlbumTrackList extends StatefulWidget {
-  const AlbumTrackList({super.key, required this.albumId, required this.albumCover});
+  const AlbumTrackList(
+      {super.key, required this.albumId, required this.albumCover});
 
   final int albumId;
   final String albumCover;
@@ -19,8 +20,8 @@ class _AlbumTrackListState extends State<AlbumTrackList> {
   var albumTrackResponse = [];
 
   Future<void> fetchAlbumTrackList() async {
-    final response = await http
-        .get(Uri.parse('https://api.deezer.com/album/${widget.albumId}/tracks'));
+    final response = await http.get(
+        Uri.parse('https://api.deezer.com/album/${widget.albumId}/tracks'));
 
     if (response.statusCode == 200) {
       final data = convert.jsonDecode(response.body);
@@ -43,31 +44,36 @@ class _AlbumTrackListState extends State<AlbumTrackList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF1DB954),
       appBar: AppBar(
-        title: const Row(
-          children: [
-            SizedBox(width: 55,),
-            Icon(Icons.music_note),
-            Text(
-              'Swift Music',
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
+        title: const Text(
+          'SpotifyDieguin',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        centerTitle: true,
-        backgroundColor: Colors.indigo,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFFA8FF78),
+                Color(0xFF1DB954),
+              ],
+            ),
+          ),
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.arrow_forward_ios),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Center(
         child: albumTrackResponse.isEmpty
@@ -75,7 +81,7 @@ class _AlbumTrackListState extends State<AlbumTrackList> {
             : ListView.builder(
                 itemCount: albumTrackResponse.length,
                 itemBuilder: (context, index) {
-                  return SongCard(
+                  return CancionCard(
                     title: albumTrackResponse[index]['title'],
                     albumCover: widget.albumCover,
                     artist: albumTrackResponse[index]['artist']['name'],

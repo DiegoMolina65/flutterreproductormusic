@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-class MusicButton extends StatefulWidget {
-  const MusicButton(this.preview, {super.key});
+class MusicaBtn extends StatefulWidget {
+  const MusicaBtn(this.preview, {super.key});
 
   final String preview;
 
@@ -12,7 +12,7 @@ class MusicButton extends StatefulWidget {
   }
 }
 
-class _MusicButtonState extends State<MusicButton> {
+class _MusicButtonState extends State<MusicaBtn> {
   late AudioPlayer _audioPlayer;
   bool _isPlaying = false;
 
@@ -49,11 +49,9 @@ class _MusicButtonState extends State<MusicButton> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(_isPlaying
-          ? Icons.pause_circle_filled
-          : Icons
-              .play_circle_filled),
-      color: Colors.indigo,
+      icon: Icon(
+          _isPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled),
+      color: Colors.white,
       iconSize: 60.0,
       onPressed: _togglePlay,
     );

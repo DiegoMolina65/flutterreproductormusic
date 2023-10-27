@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reproductor/screens/artist.dart';
+import 'package:reproductor/artista.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 10, 1, 29),
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
             iconTheme: IconThemeData(color: Colors.white),
           )),
-      home: const Artist(),
+      home: const Artista(),
     );
   }
 }
