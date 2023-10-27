@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "755767252386",
+    "project_id": "reproductor-b8788",
+    "storage_bucket": "reproductor-b8788.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755767252386:android:d473332a4b71289a694efb",
+        "android_client_info": {
+          "package_name": "com.example.reproductor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCS1vk1fHhryju4kAGmJvYYpK1IuoqjaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
